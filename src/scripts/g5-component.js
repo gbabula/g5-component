@@ -2,7 +2,7 @@
  *
  * @module g5-component
  * @author Greg Babula
- * @description Browserify Component Scaffold
+ * @description React + Browserify Component Scaffold
  *
  */
 
