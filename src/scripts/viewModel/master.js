@@ -14,7 +14,8 @@ const size         = require('lodash/collection/size');
 const forOwn       = require('lodash/object/forOwn');
 const utils        = require('./../utils/master');
 const EventEmitter = require('events').EventEmitter;
-const Handlebars   = require('hbsfy/runtime');
+const React        = require('react');
+const ReactDOM     = require('react-dom');
 
 /**
  *
@@ -40,17 +41,11 @@ function MasterViewModel(opts) {
 
     try {
 
-        this.component = require('component');
-        this.template = require('component-template');
-        this.helpers = require('component-helpers');
-        this.partials = require('component-partials');
+        this.Component = require('component');
 
     } catch (e) {
 
-        this.component = {};
-        this.template = {};
-        this.helpers = {};
-        this.partials = {};
+        this.Component = {};
 
     }
 
@@ -86,8 +81,6 @@ MasterViewModel.prototype.init = function() {
 
         this.addClass();
         this.addG5Attributes();
-        this.registerHelpers();
-        this.registerPartials();
 
     }
 
@@ -133,54 +126,6 @@ MasterViewModel.prototype.addG5Attributes = function() {
 
 /**
  *
- * @method registerHelpers
- * @param {Object} helpers
- * @returns {Object} this
- * @description method for registering handlebar helpers
- *
- */
-MasterViewModel.prototype.registerHelpers = function(helpers = this.helpers) {
-
-    if (size(helpers)) {
-
-        forOwn(helpers, function(item, key) {
-
-            Handlebars.registerHelper(key, item);
-
-        });
-
-    }
-
-    return this;
-
-};
-
-/**
- *
- * @method registerPartials
- * @param {Object} partials
- * @returns {Object} this
- * @description method for registering handlebar partials
- *
- */
-MasterViewModel.prototype.registerPartials = function(partials = this.partials) {
-
-    if (size(partials)) {
-
-        forOwn(partials, function(item, key) {
-
-            Handlebars.registerPartial(key, item);
-
-        });
-
-    }
-
-    return this;
-
-};
-
-/**
- *
  * @method reresh
  * @param {Object} data
  * @returns {Object} this
@@ -189,9 +134,11 @@ MasterViewModel.prototype.registerPartials = function(partials = this.partials) 
  */
 MasterViewModel.prototype.refresh = function(data={}) {
 
+    let Component = this.Component;
+
     utils.log('refreshing data on viewModel');
 
-    this.container.innerHTML = this.template(data);
+    ReactDOM.render(<Component data={data} />, this.container);
 
     return this;
 
@@ -210,7 +157,6 @@ MasterViewModel.prototype.bindComponent = function() {
 
         this.bound = true;
         this.addG5Attributes();
-        this.component.init(this.container);
 
     }
 
@@ -266,15 +212,9 @@ MasterViewModel.prototype.hasInstance = function() {
  */
 MasterViewModel.prototype.destroy = function() {
 
-    this.component.destroy();
-
     this.instance = false;
     this.active = false;
     this.bound = false;
-
-    this.component = null;
-    this.template = null;
-    this.helpers = null;
 
     this.container.outerHTML = '';
     this.container = null;
