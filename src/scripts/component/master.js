@@ -3,98 +3,67 @@
  * @module component/master
  * @author Greg Babula
  * @description entry point for all component specific functionality
+ * @todo expand example further, cleanup, etc...
  *
  */
 
 'use strict';
 
-const $     = global.jQuery = require('jquery');
-const utils = require('./../utils/master');
+const React = require('react');
 
-require('bootstrap/js/tooltip');
-
-/**
- *
- * @name component
- * @description init, render, addEvents, and destroy methods are required for consistency
- *
- */
-let component = {
-    $element: undefined,
+let Component = React.createClass({
     /**
      *
-     * @method init
-     * @param {Element} el
-     * @returns {Object} this
-     * @description instantiates component
+     * @method getInitialState
+     * @returns {Object}
      *
      */
-    init(el) {
+    getInitialState: function() {
 
-        el = el || document.querySelector('.g5-component');
+        return {};
 
-        this.$element = $(el);
-        this.render().addEvents();
-
-        return this;
+    },
+    /**
+     *
+     * @method componentDidMount
+     *
+     */
+    componentDidMount: function() {
 
     },
     /**
      *
      * @method render
-     * @returns {Object} this
-     * @description attaches component functionality
+     * @returns {}
      *
      */
-    render() {
+    render: function() {
 
-        utils.log('render component');
+        let opts = this.props.opts;
+        let game = this.props.data.data.game;
 
-        this.$element.find('[data-toggle="tooltip"]').tooltip();
+        return (
+            <section className='g5-component--linescore__linescore'>
+                <dl>
+                    <dt className='g5-component--linescore__key'><strong>Home Team</strong></dt>
+                    <dd className='g5-component--linescore__value'>{game.home_team_name}</dd>
 
-        return this;
+                    <dt className='g5-component--linescore__key'><strong>Location</strong></dt>
+                    <dd className='g5-component--linescore__value'>{game.location}</dd>
 
-    },
-    /**
-     *
-     * @method addEvents
-     * @returns {Object} this
-     * @description attaches component events, events should be delegated from primary element
-     *
-     */
-    addEvents() {
+                    <dt className='g5-component--linescore__key'><strong>Game Date</strong></dt>
+                    <dd className='g5-component--linescore__value'>{game.original_date}</dd>
 
-        /**
-         *
-         * @event click
-         * @param {Object} e event
-         * @description simple event example
-         *
-         */
-        this.$element.on('click', 'dt', function(e) {
+                    <dt className='g5-component--linescore__key'><strong>Game Description</strong></dt>
+                    <dd className='g5-component--linescore__value'>{game.description}</dd>
 
-            utils.log('list title click', e);
-
-        });
-
-        return this;
-
-    },
-    /**
-     *
-     * @method destroy
-     * @returns {Object} this
-     * @description detaches component functionality, events must be cleaned up to prevent memory leaks
-     *
-     */
-    destroy() {
-
-        this.$element.find('[data-toggle="tooltip"]').tooltip('destroy');
-        this.$element.off();
-
-        return this;
+                    <dt className='g5-component--linescore__key'><strong>Game Time</strong></dt>
+                    <dd className='g5-component--linescore__value'>{game.time}</dd>
+                </dl>
+            </section>
+        );
 
     }
-};
+});
 
-module.exports = component;
+module.exports = Component;
