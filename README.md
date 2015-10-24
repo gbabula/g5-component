@@ -1,13 +1,12 @@
 #g5-component.js
 
-React + Browserify Component Scaffold ([documentation](https://github.com/MajorLeagueBaseball/g5-component/tree/master/docs#documentation))
+React + Browserify Component Scaffold
 
 ---
 
-* g5-component.js with React
+* [g5-component.js](https://github.com/MajorLeagueBaseball/g5-component) with React
 * No handlebars templating
 * Simplified overall setup
-* Removed jQuery
 
 ---
 
