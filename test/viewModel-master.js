@@ -30,9 +30,7 @@ test('viewModel-master test', function(t) {
         st.equal(typeof viewModel.active, 'boolean', 'should have active property');
         st.equal(typeof viewModel.bound, 'boolean', 'should have bound property');
 
-        st.ok(!!viewModel.component, 'should have component JS defined');
-        st.ok(!!viewModel.template, 'should have component Template defined');
-        st.ok(!!viewModel.helpers, 'should have component Helpers defined');
+        st.ok(!!viewModel.Component, 'should have React Component defined');
 
         st.end();
 
@@ -43,8 +41,6 @@ test('viewModel-master test', function(t) {
         st.equal(typeof viewModel.init, 'function', 'should have init method');
         st.equal(typeof viewModel.addClass, 'function', 'should have addClass method');
         st.equal(typeof viewModel.addG5Attributes, 'function', 'should have addG5Attributes method');
-        st.equal(typeof viewModel.registerHelpers, 'function', 'should have registerHelpers method');
-        st.equal(typeof viewModel.registerPartials, 'function', 'should have registerPartials method');
         st.equal(typeof viewModel.refresh, 'function', 'should have refresh method');
         st.equal(typeof viewModel.bindComponent, 'function', 'should have bindComponent method');
         st.equal(typeof viewModel.onDataError, 'function', 'should have onDataError method');
