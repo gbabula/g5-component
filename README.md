@@ -1,28 +1,13 @@
 #g5-component.js
 
-Browserify Component Scaffold ([documentation](https://github.com/MajorLeagueBaseball/g5-component/tree/master/docs#documentation))
-
-[![NPM version](http://img.shields.io/npm/v/g5-component.svg?style=flat-square)](https://www.npmjs.org/package/g5-component) 
-[![NPM license](http://img.shields.io/npm/l/g5-component.svg?style=flat-square)](https://www.npmjs.org/package/g5-component)
+React + Browserify Component Scaffold ([documentation](https://github.com/MajorLeagueBaseball/g5-component/tree/master/docs#documentation))
 
 ---
 
-* [event based](https://github.com/MajorLeagueBaseball/g5-component/blob/master/src/scripts/events/master.js), scalable, well tested architecture
-* ES6/ES2015 support via [babel](https://github.com/MajorLeagueBaseball/g5-component/blob/master/package.json#L34)
-* [NPM scripts](https://github.com/MajorLeagueBaseball/g5-component/blob/master/package.json#L60) in favor of Gulp/Grunt
-* clean, [well documented](https://github.com/MajorLeagueBaseball/g5-component/tree/master/docs#documentation) ([JSDoc](https://github.com/MajorLeagueBaseball/g5-component/blob/master/src/scripts/g5-component.js#L16))
-* consistent code and methodologies
-* can be used as a scaffold or module
-* completely self-contained, environment agnostic code (UMD)
-* Tape unit tests via [babel-tape-runner](https://github.com/MajorLeagueBaseball/g5-component/blob/master/package.json#L80)
-* Style guide ([Airbnb](https://github.com/MajorLeagueBaseball/g5-component/blob/master/.jscsrc)) validation, JS lint, and test [on commit](https://github.com/MajorLeagueBaseball/g5-component/blob/master/package.json#L57)
-* [Image compression](https://github.com/MajorLeagueBaseball/g5-component/blob/master/package.json#L64)
-* [BEM syntax](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
-* [Handlebars templating](https://github.com/MajorLeagueBaseball/g5-component/blob/master/src/template/component.html)
-* [LoDash](https://github.com/MajorLeagueBaseball/g5-component/blob/master/src/scripts/g5-component.js#L12)
-* [LESS](https://github.com/MajorLeagueBaseball/g5-component/blob/master/src/styles/base.less)
-* [Bootstrap](https://github.com/MajorLeagueBaseball/g5-component/blob/master/src/styles/component.less)
-* [jQuery](https://github.com/MajorLeagueBaseball/g5-component/blob/master/package.json#L101)
+* g5-component.js with React
+* No handlebars templating
+* Simplified overall setup
+* Removed jQuery
 
 ---
 

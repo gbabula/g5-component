@@ -1,15 +1,15 @@
 {
   "name": "g5-component",
-  "version": "2.1.0",
-  "description": "Browserify Component Scaffold",
+  "version": "1.0.0",
+  "description": "React + Browserify Component Scaffold",
   "author": "Greg Babula",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MajorLeagueBaseball/g5-component"
+    "url": "https://github.com/gbabula/g5-component"
   },
   "bugs": {
-    "url": "https://github.com/MajorLeagueBaseball/g5-component/issues"
+    "url": "https://github.com/gbabula/g5-component/issues"
   },
   "keywords": [
     "component",
@@ -24,23 +24,14 @@
     "base",
     "application base",
     "base scaffold",
-    "handlebars",
     "bootstrap",
-    "jquery"
+    "react"
   ],
   "main": "src/scripts/g5-component.js",
   "browserify": {
     "transform": [
       "babelify",
-      "aliasify",
-      [
-        "hbsfy",
-        {
-          "extensions": [
-            "html"
-          ]
-        }
-      ]
+      "aliasify"
     ]
   },
   "browser": {
@@ -48,10 +39,7 @@
     "viewModel": "./src/scripts/viewModel/master.js",
     "eventTower": "./src/scripts/events/master.js",
     "component": "./src/scripts/component/master.js",
-    "component-template": "./src/template/component.html",
-    "component-extender": "./src/scripts/component/extender.js",
-    "component-helpers": "./src/scripts/component/helpers.js",
-    "component-partials": "./src/scripts/component/partials.js"
+    "component-extender": "./src/scripts/component/extender.js"
   },
   "config": {
     "ghooks": {
@@ -64,8 +52,8 @@
     "start-dev": "npm run watch & npm run serve",
     "compress-images": "imagemin --progressive src/images/* src/images/build",
     "postcompress-images": "echo 'imagemin complete'",
-    "build-js": "browserify -u bootstrap -u jquery -u lodash -u isomorphic-fetch src/scripts/g5-component.js --s 'g5-component' | uglifyjs -mc drop_console > src/static/g5-component-bundle.js",
-    "build-js-vendor": "browserify -r bootstrap -r jquery -r lodash -r isomorphic-fetch | uglifyjs -mc > src/static/g5-component-vendor.js",
+    "build-js": "browserify -u bootstrap -u lodash -u isomorphic-fetch src/scripts/g5-component.js --s 'g5-component' | uglifyjs -mc drop_console > src/static/g5-component-bundle.js",
+    "build-js-vendor": "browserify -r bootstrap -r lodash -r isomorphic-fetch | uglifyjs -mc > src/static/g5-component-vendor.js",
     "build-js-full": "browserify src/scripts/g5-component.js --s 'g5-component' | uglifyjs -mc drop_console > src/static/g5-component.js",
     "build-js-all": "npm run build-js-vendor && npm run build-js && npm run build-js-full",
     "build-css": "lessc --include-path=node_modules/bootstrap/less:src/styles src/styles/component.less > src/static/g5-component.css",
@@ -73,7 +61,7 @@
     "build": "npm run build-js-all && npm run build-css && npm run compress-images",
     "prebuild": "echo 'Running all builds...'",
     "postbuild": "echo 'Builds are ready!'",
-    "watch-js": "watchify -u bootstrap -u jquery -u lodash -u isomorphic-fetch src/scripts/g5-component.js --s 'g5-component' -o src/static/g5-component-bundle.js -dv",
+    "watch-js": "watchify -u bootstrap -u lodash -u isomorphic-fetch src/scripts/g5-component.js --s 'g5-component' -o src/static/g5-component-bundle.js -dv",
     "watch-css": "nodemon -e less -x 'npm run build-css'",
     "minify-css": "cleancss --source-map -d -o src/static/g5-component-min.css src/static/g5-component.css",
     "watch": "npm run watch-js & npm run watch-css",
@@ -93,12 +81,11 @@
     "duplexer2": "0.0.2",
     "es6-promise": "^3.0.2",
     "falafel": "^0.3.1",
-    "handlebars": "^3.0.3",
-    "hbsfy": "^2.2.1",
     "inherits": "^2.0.1",
     "isomorphic-fetch": "^2.1.0",
-    "jquery": "^2.1.4",
     "lodash": "^3.10.0",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
     "readable-stream": "^1.0.33"
   },
   "devDependencies": {
