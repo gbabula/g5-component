@@ -7,7 +7,8 @@ React + Browserify Component Scaffold ([documentation](https://github.com/MajorL
 * g5-component.js with React
 * No handlebars templating
 * Simplified overall setup
-* Removed jQuery
+* Composable React components with a single instance
+* TODO: update to ESLint
 
 ---
 

@@ -31,6 +31,7 @@
         "require",
         "define",
         "notify",
-        "fetch"
+        "fetch",
+        "React"
     ]
 }
