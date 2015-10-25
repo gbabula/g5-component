@@ -41,7 +41,7 @@ function MasterViewModel(opts) {
 
     try {
 
-        this.Component = require('component');
+        this.Component = require('component-factory')({React});
 
     } catch (e) {
 
@@ -126,32 +126,19 @@ MasterViewModel.prototype.addG5Attributes = function() {
 
 /**
  *
- * @method reresh
- * @param {Object} data
- * @returns {Object} this
- * @description refreshes data on viewModel
- *
- */
-MasterViewModel.prototype.refresh = function(data={}) {
-
-    let Component = this.Component;
-
-    utils.log('refreshing data on viewModel');
-
-    ReactDOM.render(<Component data={data} />, this.container);
-
-    return this;
-
-};
-
-/**
- *
  * @method bindComponent
+ * @param {Object} data
  * @returns {Object} this
  * @description attaches component specific functionality
  *
  */
-MasterViewModel.prototype.bindComponent = function() {
+MasterViewModel.prototype.bindComponent = function(data={}) {
+
+    let opts = this.opts;
+    let container = this.container;
+    let Component = this.Component;
+
+    utils.log('refreshing data on viewModel');
 
     if (!this.bound) {
 
@@ -159,6 +146,8 @@ MasterViewModel.prototype.bindComponent = function() {
         this.addG5Attributes();
 
     }
+
+    ReactDOM.render(<Component data={data} opts={opts} />, container);
 
     return this;
 
@@ -215,6 +204,8 @@ MasterViewModel.prototype.destroy = function() {
     this.instance = false;
     this.active = false;
     this.bound = false;
+
+    this.Component = null;
 
     this.container.outerHTML = '';
     this.container = null;
