@@ -136,7 +136,7 @@ EventTower.prototype.attachEvents = function() {
      */
     _viewModel.on('data', function(data) {
 
-        _viewModel.refresh(data).bindComponent();
+        _viewModel.bindComponent(data);
 
     });
 
