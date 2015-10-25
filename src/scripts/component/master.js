@@ -3,67 +3,100 @@
  * @module component/master
  * @author Greg Babula
  * @description entry point for all component specific functionality
- * @todo expand example further, cleanup, etc...
+ * @note useful cheatsheet http://ricostacruz.com/cheatsheets/react.html
+ * @note composable React components https://medium.com/javascript-scene/baby-s-first-reaction-2103348eccdd
  *
  */
 
 'use strict';
 
-const React = require('react');
+// const $  = global.jQuery = require('jquery');
+const utils = require('./../utils/master');
 
-let Component = React.createClass({
-    /**
-     *
-     * @method getInitialState
-     * @returns {Object}
-     *
-     */
-    getInitialState: function() {
+// require('bootstrap/js/tooltip');
 
-        return {};
+/**
+ *
+ * @function componentFactory
+ * @param {Object} {React} react core
+ * @returns {Function} Component
+ *
+ */
+const componentFactory = function({React}) {
 
-    },
-    /**
-     *
-     * @method componentDidMount
-     *
-     */
-    componentDidMount: function() {
+    return function Component(props) {
+        return {
+            props,
+            /**
+             *
+             * @method componentDidMount
+             * @description method called after render
+             *
+             */
+            componentDidMount() {
 
-    },
-    /**
-     *
-     * @method render
-     * @returns {}
-     *
-     */
-    render: function() {
+                utils.log('react component mounted');
 
-        let opts = this.props.opts;
-        let game = this.props.data.data.game;
+            },
+            /**
+             *
+             * @method componentWillUnmount
+             * @description DOM cleanup, unbind any event listeners specific to this component
+             *
+             */
+            componentWillUnmount() {
 
-        return (
-            <section className='g5-component--linescore__linescore'>
-                <dl>
-                    <dt className='g5-component--linescore__key'><strong>Home Team</strong></dt>
-                    <dd className='g5-component--linescore__value'>{game.home_team_name}</dd>
+                utils.log('react component unmount');
 
-                    <dt className='g5-component--linescore__key'><strong>Location</strong></dt>
-                    <dd className='g5-component--linescore__value'>{game.location}</dd>
+            },
+            /**
+             *
+             * @method handleClick
+             *
+             */
+            handleClick(event) {
 
-                    <dt className='g5-component--linescore__key'><strong>Game Date</strong></dt>
-                    <dd className='g5-component--linescore__value'>{game.original_date}</dd>
+                utils.log('example click event', event);
 
-                    <dt className='g5-component--linescore__key'><strong>Game Description</strong></dt>
-                    <dd className='g5-component--linescore__value'>{game.description}</dd>
+            },
+            /**
+             *
+             * @method render
+             * @returns {}
+             *
+             */
+            render() {
 
-                    <dt className='g5-component--linescore__key'><strong>Game Time</strong></dt>
-                    <dd className='g5-component--linescore__value'>{game.time}</dd>
-                </dl>
-            </section>
-        );
+                let { opts } = this.props;
+                let { game } = this.props.data.data;
 
-    }
-});
+                utils.log('react component render');
 
-module.exports = Component;
+                return (
+                    <section className='g5-component--linescore'>
+                        <dl onClick={ this.handleClick }>
+                            <dt className='g5-component--linescore__key'><strong>Home Team</strong></dt>
+                            <dd className='g5-component--linescore__value'>{ game.home_team_name }</dd>
+
+                            <dt className='g5-component--linescore__key'><strong>Location</strong></dt>
+                            <dd className='g5-component--linescore__value'>{ game.location }</dd>
+
+                            <dt className='g5-component--linescore__key'><strong>Game Date</strong></dt>
+                            <dd className='g5-component--linescore__value'>{ game.original_date }</dd>
+
+                            <dt className='g5-component--linescore__key'><strong>Game Description</strong></dt>
+                            <dd className='g5-component--linescore__value'>{ game.description }</dd>
+
+                            <dt className='g5-component--linescore__key'><strong>Game Time</strong></dt>
+                            <dd className='g5-component--linescore__value'>{ game.time }</dd>
+                        </dl>
+                    </section>
+                );
+
+            }
+        };
+    };
+
+};
+
+module.exports = componentFactory;
