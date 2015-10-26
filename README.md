@@ -9,6 +9,7 @@ React + Browserify Component Scaffold
 * Simplified overall setup
 * Composable React components with a single instance
 * TODO: update to ESLint
+* TODO: implement [react-bootstrap](https://github.com/react-bootstrap/react-bootstrap)
 
 ---
 
