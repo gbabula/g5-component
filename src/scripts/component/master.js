@@ -2,9 +2,10 @@
  *
  * @module component/master
  * @author Greg Babula
- * @description entry point for all component specific functionality
+ * @description React component factory
  * @note useful cheatsheet http://ricostacruz.com/cheatsheets/react.html
  * @note composable React components https://medium.com/javascript-scene/baby-s-first-reaction-2103348eccdd
+ * @note component specs https://facebook.github.io/react/docs/component-specs.html
  *
  */
 
@@ -30,12 +31,25 @@ const componentFactory = function({React}) {
             /**
              *
              * @method componentDidMount
-             * @description method called after render
+             * @description Invoked once, only on the client (not on the server),
+             * immediately after the initial rendering occurs.
              *
              */
             componentDidMount() {
 
                 utils.log('react component mounted');
+
+            },
+            /**
+             *
+             * @method componentWillMount
+             * @description Invoked once, both on the client and server,
+             * immediately before the initial rendering occurs.
+             *
+             */
+            componentWillMount() {
+
+                utils.log('react component will mount');
 
             },
             /**
@@ -51,6 +65,20 @@ const componentFactory = function({React}) {
             },
             /**
              *
+             * @method componentWillUpdate
+             * @param {Object} nextProps
+             * @param {Object} nextState
+             * @description Invoked immediately before rendering when new props or state
+             * are being received. This method is not called for the initial render.
+             *
+             */
+            componentWillUpdate() {
+
+                utils.log('react component will update');
+
+            },
+            /**
+             *
              * @method handleClick
              *
              */
@@ -62,7 +90,9 @@ const componentFactory = function({React}) {
             /**
              *
              * @method render
-             * @returns {}
+             * @returns {ReactElement}
+             * @note The render() function should be pure, meaning that it does not modify
+             * component state, it returns the same result each time it's invoked
              *
              */
             render() {
