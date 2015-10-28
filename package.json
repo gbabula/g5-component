@@ -31,12 +31,7 @@
   "browserify": {
     "transform": [
       "babelify",
-      "aliasify",
-      [
-        "reactify", {
-          "es6": true
-        }
-      ]
+      "aliasify"
     ]
   },
   "browser": {
